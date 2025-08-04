@@ -10,6 +10,7 @@ import {
   PlusIcon,
   QuestionIcon,
   UserIcon,
+  GitHubIcon,
 } from '@/components/icons';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
@@ -72,6 +73,22 @@ export default function AgriTrackLogin() {
       toast({
         variant: 'destructive',
         title: 'Google login failed',
+        description: error.message,
+      });
+    }
+  };
+  
+  const handleGitHubLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'github',
+       options: {
+        redirectTo: `${window.location.origin}/dashboard`
+      }
+    });
+     if (error) {
+      toast({
+        variant: 'destructive',
+        title: 'GitHub login failed',
         description: error.message,
       });
     }
@@ -166,7 +183,7 @@ export default function AgriTrackLogin() {
             Forgot Password?
           </p>
 
-          <div className="py-3">
+          <div className="space-y-3 py-3">
             <Button
               variant="secondary"
               className="h-12 w-full gap-2 text-base font-bold tracking-wide"
@@ -174,6 +191,14 @@ export default function AgriTrackLogin() {
             >
               <GoogleLogoIcon className="h-6 w-6" />
               <span>Continue with Google</span>
+            </Button>
+             <Button
+              variant="secondary"
+              className="h-12 w-full gap-2 text-base font-bold tracking-wide"
+              onClick={handleGitHubLogin}
+            >
+              <GitHubIcon className="h-6 w-6" />
+              <span>Continue with GitHub</span>
             </Button>
           </div>
         </main>
