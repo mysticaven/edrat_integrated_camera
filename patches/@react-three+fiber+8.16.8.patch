@@ -1,0 +1,140 @@
+diff --git a/node_modules/@react-three/fiber/dist/index.js b/node_modules/@react-three/fiber/dist/index.js
+index 45b85a3..b1e3e7b 100644
+--- a/node_modules/@react-three/fiber/dist/index.js
++++ b/node_modules/@react-three/fiber/dist/index.js
+@@ -10,7 +10,7 @@ import * as THREE from 'three';
+ import { Presence, usePresence } from 'framer-motion';
+ 
+ const version = "8.16.8";
+-const ReactCurrentOwner = React__namespace.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner;
++const ReactCurrentOwner = React__namespace.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED?.ReactCurrentOwner;
+ const RESERVED = ['children', 'key', 'ref'];
+ const privateKeys = ['__self', '__source'];
+ function createRoot(canvas) {
+diff --git a/node_modules/@react-three/fiber/dist/native.js b/node_modules/@react-three/fiber/dist/native.js
+index f30164c..605eddf 100644
+--- a/node_modules/@react-three/fiber/dist/native.js
++++ b/node_modules/@react-three/fiber/dist/native.js
+@@ -7,7 +7,7 @@ import { unstable_batchedUpdates } from 'react-native';
+ import { Presence, usePresence } from 'framer-motion';
+ 
+ const version = "8.16.8";
+-const ReactCurrentOwner = React__namespace.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner;
++const ReactCurrentOwner = React__namespace.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED?.ReactCurrentOwner;
+ const RESERVED = ['children', 'key', 'ref'];
+ const privateKeys = ['__self', '__source'];
+ function createRoot(canvas) {
+diff --git a/node_modules/@react-three/fiber/package.json b/node_modules/@react-three/fiber/package.json
+index 3a5f826..91acb29 100644
+--- a/node_modules/@react-three/fiber/package.json
++++ b/node_modules/@react-three/fiber/package.json
+@@ -99,6 +99,10 @@
+       "require": "./dist/native.js"
+     }
+   },
++  "scripts": {
++    "postinstall": "patch-package"
++  },
+   "sideEffects": false,
+   "version": "8.16.8"
+ }
+diff --git a/node_modules/@react-three/fiber/dist/index.mjs b/node_modules/@react-three/fiber/dist/index.mjs
+index 8e45851..5c938c4 100644
+--- a/node_modules/@react-three/fiber/dist/index.mjs
++++ b/node_modules/@react-three/fiber/dist/index.mjs
+@@ -7,7 +7,7 @@ import * as THREE from 'three';
+ import { Presence, usePresence } from 'framer-motion';
+ 
+ const version = "8.16.8";
+-const ReactCurrentOwner = React__namespace.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner;
++const ReactCurrentOwner = React__namespace.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED?.ReactCurrentOwner;
+ const RESERVED = ['children', 'key', 'ref'];
+ const privateKeys = ['__self', '__source'];
+ function createRoot(canvas) {
+diff --git a/node_modules/@react-three/fiber/dist/native.mjs b/node_modules/@react-three/fiber/dist/native.mjs
+index 9b69242..23992bd 100644
+--- a/node_modules/@react-three/fiber/dist/native.mjs
++++ b/node_modules/@react-three/fiber/dist/native.mjs
+@@ -4,7 +4,7 @@ import { unstable_batchedUpdates } from 'react-native';
+ import { Presence, usePresence } from 'framer-motion';
+ 
+ const version = "8.16.8";
+-const ReactCurrentOwner = React__namespace.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner;
++const ReactCurrentOwner = React__namespace.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED?.ReactCurrentOwner;
+ const RESERVED = ['children', 'key', 'ref'];
+ const privateKeys = ['__self', '__source'];
+ function createRoot(canvas) {
+diff --git a/node_modules/@react-three/fiber/dist/index.d.ts b/node_modules/@react-three/fiber/dist/index.d.ts
+index c6b9e59..43c0cde 100644
+--- a/node_modules/@react-three/fiber/dist/index.d.ts
++++ b/node_modules/@react-three/fiber/dist/index.d.ts
+@@ -10,7 +10,7 @@ import { Presence, usePresence } from 'framer-motion';
+ 
+ declare const version = "8.16.8";
+ 
+-declare const ReactCurrentOwner: {
++declare const ReactCurrentOwner: ({
+     current: any;
+-};
++} | undefined);
+ 
+ declare const RESERVED: string[];
+ 
+diff --git a/node_modules/@react-three/fiber/dist/native.d.ts b/node_modules/@react-three/fiber/dist/native.d.ts
+index ecefa66..139c5bb 100644
+--- a/node_modules/@react-three/fiber/dist/native.d.ts
++++ b/node_modules/@react-three/fiber/dist/native.d.ts
+@@ -8,9 +8,9 @@ import { Presence, usePresence } from 'framer-motion';
+ 
+ declare const version = "8.16.8";
+ 
+-declare const ReactCurrentOwner: {
++declare const ReactCurrentOwner: ({
+     current: any;
+-};
++} | undefined);
+ 
+ declare const RESERVED: string[];
+ 
+diff --git a/node_modules/@react-three/fiber/README.md b/node_modules/@react-three/fiber/README.md
+index 1ba86c6..0415d78 100644
+--- a/node_modules/@react-three/fiber/README.md
++++ b/node_modules/@react-three/fiber/README.md
+@@ -1,4 +1,4 @@
+-## react-three-fiber
++## @react-three/fiber
+ 
+ **ARCHIVED: This package has been renamed to `@react-three/fiber`.**
+ 
+diff --git a/node_modules/@react-three/fiber/dist/declarations/src/core/utils.d.ts b/node_modules/@react-three/fiber/dist/declarations/src/core/utils.d.ts
+index 725835c..f281ff0 100644
+--- a/node_modules/@react-three/fiber/dist/declarations/src/core/utils.d.ts
++++ b/node_modules/@react-three/fiber/dist/declarations/src/core/utils.d.ts
+@@ -10,9 +10,9 @@ export declare const DEFAULT: unique symbol;
+ export declare const setLogger: (newLogger: Logger) => void;
+ export declare const log: {
+     (type: Log.Warn | Log.Error, ...message: any[]): void;
+     (type: Log.Info, object: any, ...message: any[]): void;
+ };
+-export declare const ReactCurrentOwner: {
++export declare const ReactCurrentOwner: ({
+     current: any;
+-};
++} | undefined);
+ export declare const RESERVED: string[];
+ declare const privateKeys: string[];
+ export declare function shallow<T>(a: T, b: any): boolean;
+diff --git a/node_modules/@react-three/fiber/dist/declarations/src/native.d.ts b/node_modules/@react-three/fiber/dist/declarations/src/native.d.ts
+index d7a67cb..6148384 100644
+--- a/node_modules/@react-three/fiber/dist/declarations/src/native.d.ts
++++ b/node_modules/@react-three/fiber/dist/declarations/src/native.d.ts
+@@ -7,9 +7,9 @@ export * from './web';
+ export declare const act: typeof React.act;
+ declare const _default: {
+     createRoot: typeof createRoot;
+     unmountComponentAtNode: (container: any, callback?: ((c: any) => void) | undefined) => any;
+     render: (element: React.ReactNode, container: any, callback?: (() => void) | undefined) => any;
+ };
+ export default _default;
+-export { };
++export {};
