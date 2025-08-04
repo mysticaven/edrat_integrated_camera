@@ -203,32 +203,6 @@ export default function AgriTrackLogin() {
           </div>
         </main>
       </div>
-
-      <footer className="sticky bottom-0 bg-card">
-        <div className="flex gap-2 border-t border-border px-4 pt-2 pb-3">
-          <Link href="#" className="flex flex-1 flex-col items-center justify-end gap-1 text-primary">
-            <div className="flex h-8 items-center justify-center">
-              <HouseIcon className="h-6 w-6" />
-            </div>
-          </Link>
-          <Link href="#" className="flex flex-1 flex-col items-center justify-end gap-1 text-muted-foreground">
-            <div className="flex h-8 items-center justify-center">
-              <MagnifyingGlassIcon className="h-6 w-6" />
-            </div>
-          </Link>
-          <Link href="#" className="flex flex-1 flex-col items-center justify-end gap-1 text-muted-foreground">
-            <div className="flex h-8 items-center justify-center">
-              <PlusIcon className="h-6 w-6" />
-            </div>
-          </Link>
-          <Link href="#" className="flex flex-1 flex-col items-center justify-end gap-1 text-muted-foreground">
-            <div className="flex h-8 items-center justify-center">
-              <UserIcon className="h-6 w-6" />
-            </div>
-          </Link>
-        </div>
-        <div className="h-5 bg-card"></div>
-      </footer>
     </div>
   );
 }
