@@ -31,12 +31,14 @@ import {
 import { CheckCircle, Trash2, Bell, X, CloudSun } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import Chatbot from '@/components/chatbot';
 
 type Task = {
   id: number;
   task_name: string;
   field: string;
   is_done: boolean;
+  created_at: string;
 };
 
 type Notification = {
@@ -91,6 +93,7 @@ const getWeatherConditionFromCode = (code: number): string => {
 export default function Dashboard() {
   const [user, setUser] = useState<any>(null);
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [analyticsData, setAnalyticsData] = useState<any[]>([]);
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [weather, setWeather] = useState<Weather>({ temp: null, condition: null });
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
@@ -138,6 +141,20 @@ export default function Dashboard() {
     } else {
       setTasks(tasksData);
     }
+
+    // Fetch Analytics
+    const { data: analyticsData, error: analyticsError } = await supabase
+      .from('analytics')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('recorded_at', { ascending: false });
+
+    if (analyticsError) {
+      toast({ variant: 'destructive', title: 'Error fetching analytics', description: analyticsError.message });
+    } else {
+      setAnalyticsData(analyticsData);
+    }
+
 
     // Fetch Notifications
     const { data: notificationsData, error: notificationsError } = await supabase
@@ -412,6 +429,8 @@ export default function Dashboard() {
           )}
         </div>
       </div>
+      
+      <Chatbot tasks={tasks} analyticsData={analyticsData} />
 
       <footer className="sticky bottom-0 mt-8 bg-background">
         <div className="flex gap-2 border-t border-border px-4 pb-3 pt-2">
